@@ -4,7 +4,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <div class="flex h-screen">
-    <nav class="w-1/4 bg-[rgb(231,224,224)] p-8">
+    <nav class="w-1/4 bg-[rgb(231,224,224)] p-8 fixed h-full">
       <ul>
         <li class="mb-4">
           <RouterLink
@@ -35,6 +35,7 @@ import { RouterLink, RouterView } from 'vue-router'
       </ul>
     </nav>
 
+    <div class="w-1/4"></div>
     <div class="flex-1 bg-gray-100 p-8">
       <RouterView />
     </div>
