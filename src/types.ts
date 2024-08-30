@@ -9,3 +9,9 @@ export interface Sport {
 export interface SportState {
     sport: Sport | null
 }
+
+export interface Comment {
+    id: number,
+    author: string,
+    comment: string
+}

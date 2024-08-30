@@ -36,7 +36,7 @@ import { RouterLink, RouterView } from 'vue-router'
     </nav>
 
     <div class="w-1/4"></div>
-    <div class="flex-1 bg-gray-100 p-8">
+    <div class="flex-1 bg-gray-100 p-8 h-fit min-h-screen">
       <RouterView />
     </div>
   </div>

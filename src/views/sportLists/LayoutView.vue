@@ -2,7 +2,7 @@
 console.log('Hi')
 </script>
 <template>
-  <h1 class="text-2xl">List of Sports</h1>
+  <h1 class="text-2xl text-slate-600">List of Sports</h1>
   <div class="py-2"></div>
   <RouterView/>
 </template>
