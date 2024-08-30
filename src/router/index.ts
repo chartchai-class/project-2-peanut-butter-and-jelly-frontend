@@ -1,3 +1,5 @@
+import SportService from '@/services/SportService'
+import { useSportStore } from '@/stores/sport'
 import MedalTallyView from '@/views/MedalTallyView.vue'
 import CommentView from '@/views/sportLists/CommentView.vue'
 import SportListLayoutView from '@/views/sportLists/LayoutView.vue'
@@ -23,9 +25,18 @@ const router = createRouter({
           component: SportListTableView
         },
         {
-          path: 'comment',
+          path: ':id',
           name: 'comment-view',
-          component: CommentView
+          component: CommentView,
+          props: true,
+          beforeEnter: (to) => {
+            const id = parseInt(to.params.id as string)
+            const sportStore = useSportStore()
+            return SportService.getSport(id).then((res) => {
+              console.log(res.data)
+              sportStore.setSport(res.data)
+            })
+          }
         }
       ]
     }

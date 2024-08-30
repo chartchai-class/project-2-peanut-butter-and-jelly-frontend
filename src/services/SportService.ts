@@ -14,5 +14,8 @@ export default {
     },
     getSportList() {
         return apiClient.get('/sportLists')
+    },
+    getSport(id: number) {
+        return apiClient.get('/sportLists/' + id)
     }
 }
