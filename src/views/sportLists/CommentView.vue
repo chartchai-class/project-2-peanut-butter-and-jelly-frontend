@@ -10,6 +10,7 @@ const commentStore = useCommentStore()
 
 // Computed property to get the current sport from the store
 const sport = computed(() => sportStore.sport)
+const isFormVisible = ref(false)
 
 // Local state for user input
 const author = ref('')
@@ -41,12 +42,15 @@ const handleKeydown = (event: KeyboardEvent) => {
     addComment()
   }
 }
+const toggleForm = () => {
+  isFormVisible.value = !isFormVisible.value
+}
 console.log(sportComments.value)
 </script>
 
 <template>
   <div v-if="sport">
-    <div class="overflow-auto pb-40">
+    <div class="overflow-auto" :class="{ 'pb-60': isFormVisible }">
       <h1 class="text-5xl font-bold">{{ sport.sport_title }}</h1>
       <div class="py-4">
         <h1>&#x1f947; <a class="font-bold">1st place:</a> {{ sport.gold }}</h1>
@@ -55,17 +59,29 @@ console.log(sportComments.value)
       </div>
       <!-- Comment section -->
       <div class="py-4">
-        <h1 class="text-2xl">Cheer Up Comments:</h1>
         <div class="px-6 py-2" v-if="sportComments.length > 0">
+          <h1 class="text-2xl text-slate-600">Cheer Up Comments:</h1>
           <CommentBlock v-for="comment in sportComments" :key="comment.id" :comment="comment" />
         </div>
-        <div v-else>
-          <h1>No Comment</h1>
+        <div v-else class="grid justify-items-center text-slate-600 pt-12">
+          <h1 class="text-2xl">No Comment</h1>
+          <p>Be the first one who add a comment!</p>
         </div>
-        
+      </div>
+      <!-- comment btn -->
+      <div class="pb-10 grid justify-items-end fixed bottom-0 right-0 w-3/4 pr-12 text-lg">
+        <button
+          @click="toggleForm"
+          class="bg-blue-500 text-white p-4 rounded-lg"
+          v-if="!isFormVisible"
+        >
+          &#128172; Cheer your athletes
+        </button>
       </div>
       <!-- Comment input form -->
-      <div class="py-4 fixed bottom-0 right-0 w-3/4 bg-white p-4 shadow-md">
+      <div class="py-4 fixed bottom-0 right-0 w-3/4 p-4 bg-zinc-300" v-if="isFormVisible">
+        <h1 class="text-2xl font-bold text-slate-600">Write a Comment:</h1>
+        <p class="text-slate-600 pb-4">Say something to cheer up your favorite athletes.</p>
         <input
           v-model="author"
           type="text"
@@ -74,11 +90,22 @@ console.log(sportComments.value)
         />
         <textarea
           v-model="commentText"
-          placeholder="Enter your comment"
+          placeholder="Enter your comment here..."
           class="border p-2 mb-2 w-full"
           @keydown="handleKeydown"
         ></textarea>
-        <button @click="addComment" class="bg-blue-500 text-white px-4 py-2">Add Comment</button>
+        <div class="flex  justify-end space-x-2">
+          <button @click="addComment" class="bg-blue-500 text-white px-4 py-2 rounded-lg">
+            Add Comment
+          </button>
+          <button
+            @click="toggleForm"
+            class="bg-neutral-500 text-white px-4 py-2 rounded-lg shadow-lg"
+            v-if="isFormVisible"
+          >
+            Done
+          </button>
+        </div>
       </div>
     </div>
   </div>
