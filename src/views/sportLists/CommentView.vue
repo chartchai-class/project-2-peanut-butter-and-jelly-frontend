@@ -80,18 +80,18 @@ console.log(sportComments.value)
       </div>
       <!-- Comment input form -->
       <div class="py-4 fixed bottom-0 right-0 w-3/4 p-4 bg-zinc-300" v-if="isFormVisible">
-        <h1 class="text-2xl font-bold text-slate-600">Write a Comment:</h1>
-        <p class="text-slate-600 pb-4">Say something to cheer up your favorite athletes.</p>
+        <h1 class="text-2xl font-bold text-slate-700">Write a Comment:</h1>
+        <p class="text-slate-700 pb-4">Say something to cheer up your favorite athletes.</p>
         <input
           v-model="author"
           type="text"
           placeholder="Commenting as..."
-          class="border p-2 mb-2 w-full"
+          class="border p-2 mb-2 w-full rounded-md"
         />
         <textarea
           v-model="commentText"
           placeholder="Enter your comment here..."
-          class="border p-2 mb-2 w-full"
+          class="border p-2 mb-2 w-full resize-none rounded-md"
           @keydown="handleKeydown"
         ></textarea>
         <div class="flex  justify-end space-x-2">
