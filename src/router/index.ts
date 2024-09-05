@@ -8,6 +8,8 @@ import CountryInformationView from '@/views/countryInformation/CountryInformatio
 import { createRouter, createWebHistory } from 'vue-router'
 import nProgress from 'nprogress'
 import CountryLayoutView from '@/views/countryInformation/LayoutView.vue'
+import CountrySportListView from '@/views/countryInformation/SportListView.vue'
+import { useCountryStore } from '@/stores/country'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,12 +23,27 @@ const router = createRouter({
       path: '/country/:id',
       name: 'country-layout-view',
       component: CountryLayoutView,
+      props: true,
+      beforeEnter: (to) => {
+        const id = parseInt(to.params.id as string)
+        const countryStore = useCountryStore()
+        return SportService.getCountry(id)
+        .then((response) => {
+          countryStore.setCountry(response.data)
+          console.log(response.data)
+        })
+      },
       children: [
         {
           path: '',
           name: 'country-information-view',
           component: CountryInformationView
         },
+        {
+          path: 'sport-list',
+          name: 'country-sport-list-view',
+          component: CountrySportListView
+        }
       ]
     },
     {

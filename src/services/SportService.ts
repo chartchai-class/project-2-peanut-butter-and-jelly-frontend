@@ -17,5 +17,8 @@ export default {
   },
   getSport(id: number) {
     return apiClient.get('/sportLists/' + id)
+  },
+  getCountry(id: number) {
+    return apiClient.get('/countries/' + id)
   }
 }

@@ -27,6 +27,10 @@ export interface SportState {
   sport: Sport | null
 }
 
+export interface CountryState {
+  country: Country | null
+}
+
 export interface Comment {
   id: number
   author: string
