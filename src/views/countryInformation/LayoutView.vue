@@ -8,6 +8,11 @@ const activeTab = ref('country-details')
 const selectTab = (tab: string) => {
   activeTab.value = tab
 }
+import { useCountryStore } from '@/stores/country';
+import { storeToRefs } from 'pinia';
+
+const countryStore = useCountryStore()
+const { country } = storeToRefs(countryStore)
 </script>
 
 <template>
@@ -57,6 +62,8 @@ const selectTab = (tab: string) => {
     </div>
 
   </div>
+  <div class="py-2"></div>
+  <RouterView :country="country"/>
 </template>
 
 <style scoped>
