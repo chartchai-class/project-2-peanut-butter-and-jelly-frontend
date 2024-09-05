@@ -1,9 +1,9 @@
 export interface Sport {
-    id: number,
-    sport_title: string,
-    gold: string,
-    silver: string,
-    bronze: string
+  id: number
+  sport_title: string
+  gold: string
+  silver: string
+  bronze: string
 }
 
 export interface Country {
@@ -24,11 +24,11 @@ export interface SportList {
 }
 
 export interface SportState {
-    sport: Sport | null
+  sport: Sport | null
 }
 
 export interface Comment {
-    id: number,
-    author: string,
-    comment: string
+  id: number
+  author: string
+  comment: string
 }

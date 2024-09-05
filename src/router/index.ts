@@ -4,6 +4,7 @@ import MedalTallyView from '@/views/MedalTallyView.vue'
 import CommentView from '@/views/sportLists/CommentView.vue'
 import SportListLayoutView from '@/views/sportLists/LayoutView.vue'
 import SportListTableView from '@/views/sportLists/TableView.vue'
+import CountryInformationView from '@/views/countryInformation/CountryInformationView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import nProgress from 'nprogress'
 
@@ -13,7 +14,14 @@ const router = createRouter({
     {
       path: '/',
       name: 'medal-tally-view',
-      component: MedalTallyView
+      component: MedalTallyView,
+      children: [
+        {
+          path: '',
+          name: 'country-information-view',
+          component: CountryInformationView
+        },
+      ]
     },
     {
       path: '/sportlist',
