@@ -1,5 +1,9 @@
 <script setup lang="ts">
-console.log('Hi')
+import { useCountryStore } from '@/stores/country';
+import { storeToRefs } from 'pinia';
+
+const countryStore = useCountryStore()
+const { country } = storeToRefs(countryStore)
 </script>
 
 <template>
@@ -37,5 +41,5 @@ console.log('Hi')
     </div>
   </RouterLink>
   <div class="py-2"></div>
-  <RouterView />
+  <RouterView :country="country"/>
 </template>
