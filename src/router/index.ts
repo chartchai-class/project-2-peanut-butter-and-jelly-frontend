@@ -18,7 +18,7 @@ const router = createRouter({
       component: MedalTallyView,
     },
     {
-      path: '/contry/:id',
+      path: '/country/:id',
       name: 'country-layout-view',
       component: CountryLayoutView,
       children: [
