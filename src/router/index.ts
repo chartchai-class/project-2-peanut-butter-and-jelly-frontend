@@ -18,7 +18,7 @@ const router = createRouter({
       component: MedalTallyView,
     },
     {
-      path: '/contry/:id',
+      path: '/country/:id',
       name: 'country-layout-view',
       component: CountryLayoutView,
       children: [
@@ -26,7 +26,7 @@ const router = createRouter({
           path: '',
           name: 'country-information-view',
           component: CountryInformationView
-        },
+        }
       ]
     },
     {

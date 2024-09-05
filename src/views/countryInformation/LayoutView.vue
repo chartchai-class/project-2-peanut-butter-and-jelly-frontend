@@ -1,41 +1,67 @@
 <script setup lang="ts">
-console.log('Hi')
+import { ref } from 'vue'
+
+// Track the currently selected tab
+const activeTab = ref('country-details')
+
+// Methods to change tabs
+const selectTab = (tab: string) => {
+  activeTab.value = tab
+}
 </script>
 
 <template>
-  <RouterLink :to="{ name: 'sport-list-table-view' }">
-    <div class="py-2">
-      <!-- Container div with no background -->
-      <div class="inline-block">
-        <!-- Apply hover effects only to the text with a highlight effect -->
-        <h1 class="text-2xl text-slate-600 hover:bg-gray-300 px-4 py-2 rounded inline-block">
-          List of Sports
-        </h1>
-      </div>
+  <!-- Container for the Country Information Page -->
+  <div class="country-info-page">
+
+    <!-- Tab Navigation -->
+    <div class="flex justify-start space-x-4 border-b-2 pb-2 mb-4">
+      <!-- Country Details Tab -->
+      <button
+        @click="selectTab('country-details')"
+        :class="activeTab === 'country-details' ? 'text-red-950 border-b-4 border-red-950 font-bold' : 'text-slate-600 hover:text-red-950 hover:border-red-950 hover:font-bold cursor-pointer transition-colors duration-200'"
+        class="text-2xl px-4 py-2 focus:outline-none">
+        Country Details
+      </button>
+
+      <!-- List of Sports Tab -->
+      <button
+        @click="selectTab('list-of-sports')"
+        :class="activeTab === 'list-of-sports' ? 'text-red-950 border-b-4 border-red-950 font-bold' : 'text-slate-600 hover:text-red-950 hover:border-red-950 hover:font-bold cursor-pointer transition-colors duration-200'"
+        class="text-2xl px-4 py-2 focus:outline-none">
+        List of Sports
+      </button>
+
+      <!-- Comment Tab -->
+      <button
+        @click="selectTab('comment')"
+        :class="activeTab === 'comment' ? 'text-red-950 border-b-4 border-red-950 font-bold' : 'text-slate-600 hover:text-red-950 hover:border-red-950 hover:font-bold cursor-pointer transition-colors duration-200'"
+        class="text-2xl px-4 py-2 focus:outline-none">
+        Comment
+      </button>
     </div>
-  </RouterLink>
-  <RouterLink :to="{ name: 'sport-list-table-view' }">
-    <div class="py-2">
-      <!-- Container div with no background -->
-      <div class="inline-block">
-        <!-- Apply hover effects only to the text with a highlight effect -->
-        <h1 class="text-2xl text-slate-600 hover:bg-gray-300 px-4 py-2 rounded inline-block">
-          List of Sports
-        </h1>
-      </div>
+
+    <!-- Country Details Section -->
+    <div v-if="activeTab === 'country-details'" class="py-4">
+      <h1 class="text-xl font-bold mb-2">Country Details</h1>
     </div>
-  </RouterLink>
-  <RouterLink :to="{ name: 'sport-list-table-view' }">
-    <div class="py-2">
-      <!-- Container div with no background -->
-      <div class="inline-block">
-        <!-- Apply hover effects only to the text with a highlight effect -->
-        <h1 class="text-2xl text-slate-600 hover:bg-gray-300 px-4 py-2 rounded inline-block">
-          List of Sports
-        </h1>
-      </div>
+
+    <!-- List of Sports Section -->
+    <div v-if="activeTab === 'list-of-sports'" class="py-4">
+      <h1 class="text-xl font-bold mb-2">List of Sports</h1>
     </div>
-  </RouterLink>
-  <div class="py-2"></div>
-  <RouterView />
+
+    <!-- Comment Section -->
+    <div v-if="activeTab === 'comment'" class="py-4">
+      <h1 class="text-xl font-bold mb-2">Comment</h1>
+    </div>
+
+  </div>
 </template>
+
+<style scoped>
+/* Optional: Add some hover effect to the tab buttons */
+button:hover {
+  cursor: pointer;
+}
+</style>
