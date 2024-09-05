@@ -6,6 +6,23 @@ export interface Sport {
     bronze: string
 }
 
+export interface Country {
+    id: number,
+    country: string,
+    desc: string;
+    img: string;
+    gold: number;
+    silver: number;
+    bronze: number;
+    total: number;
+    sport_list: SportList[];
+}
+
+export interface SportList {
+    sport_list: string,
+    medal_type: string
+}
+
 export interface SportState {
     sport: Sport | null
 }
