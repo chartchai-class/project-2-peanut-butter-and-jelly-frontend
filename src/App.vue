@@ -3,6 +3,7 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
+  <SpeedInsights/>
   <div class="flex h-screen">
     <nav class="w-1/4 bg-custom-red p-8 fixed h-full">
       <div class="mb-6">
