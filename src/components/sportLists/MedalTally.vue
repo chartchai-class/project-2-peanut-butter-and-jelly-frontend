@@ -12,6 +12,9 @@ const router = useRouter()
 <template>
     <tr class="hover:bg-gray-100 cursor-pointer">
         <td class="py-2 px-4 border-b">{{ country.country }}</td>
+        <td class="py-2 px-4 border-b">
+  <img :src="country.img" class="w-12 h-12 object-cover rounded-full">
+</td>
         <td class="py-2 px-4 border-b">{{ country.gold }}</td>
         <td class="py-2 px-4 border-b">{{ country.silver }}</td>
         <td class="py-2 px-4 border-b">{{ country.bronze }}</td>
