@@ -36,11 +36,24 @@ onMounted(() => {
   })
 })
 
+// Jireh ------------
+// const pageSize = ref<number | null>(null);
+// const error = ref<string | null>(null);
 
+// watch(pageSize, (newSize) => {
+//   if(newSize !== null && newSize > 9) {
+//     pageSize.value = 9;
+//   } else {
+//     error.value = null;
+//   }
+//   currentPage.value = 1;
+// });
+// ---------------------
 </script>
 <template>
   <h1 class="text-2xl font-bold">Medal Tally</h1>
   <p>This is where your main content goes.</p>
+<div class="flex justify-between items-center mb-4">
   <div class="w-[300px]">
       <RouterLink
         :to="{ name: 'medal-tally-view', query: { page: page - 1 } }"
@@ -59,7 +72,14 @@ onMounted(() => {
         v-if="hasNextPage"
         >Next Page &#62;</RouterLink
       >
+      
     </div>
+    <div class="flex items-center">
+      <label for="pageSize" class="text-gray-700 mr-2">Number of countries per page: </label>
+      <input id="pageSize" type="number" min="1" max="9" v-model.number="pageSize" class="border border-gray-300 rounded p-2 mt-1 w-14"/>
+    <p v-if="error" class="text-red-500 ml-2"> {{ error  }}</p>
+    </div>
+  </div>
   <table class="min-w-full bg-white border border-gray-300">
     <thead>
       <tr class="bg-gray-200 text-gray-700 text-left">
