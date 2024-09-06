@@ -21,48 +21,30 @@ const { country } = storeToRefs(countryStore)
     <!-- Tab Navigation -->
     <div class="flex justify-start space-x-4 border-b-2 pb-2 mb-4">
       <!-- Country Details Tab -->
-      <RouterLink :to="{ name: 'country-information-view' }">
-        <button
-          @click="selectTab('country-details')"
-          :class="
-            activeTab === 'country-details'
-              ? 'text-red-950 border-b-4 border-red-950 font-bold'
-              : 'text-slate-600 hover:text-red-950 hover:border-red-950 hover:font-bold cursor-pointer transition-colors duration-200'
-          "
-          class="text-2xl px-4 py-2 focus:outline-none"
-        >
-          Country Details
-        </button>
+      <RouterLink
+        :to="{ name: 'country-information-view' }"
+        class="text-slate-600 hover:text-red-950 hover:border-red-950 hover:font-bold cursor-pointer text-2xl px-4 py-2 focus:outline-none"
+        exact-active-class="text-red-950 border-b-4 border-red-950 font-bold"
+      >
+        Country Details
       </RouterLink>
 
       <!-- List of Sports Tab -->
-      <RouterLink :to="{ name: 'country-sport-list-view' }">
-      <button
-        @click="selectTab('list-of-sports')"
-        :class="
-          activeTab === 'list-of-sports'
-            ? 'text-red-950 border-b-4 border-red-950 font-bold'
-            : 'text-slate-600 hover:text-red-950 hover:border-red-950 hover:font-bold cursor-pointer transition-colors duration-200'
-        "
-        class="text-2xl px-4 py-2 focus:outline-none"
+      <RouterLink
+        :to="{ name: 'country-sport-list-view' }"
+        class="text-slate-600 hover:text-red-950 hover:border-red-950 hover:font-bold cursor-pointer text-2xl px-4 py-2 focus:outline-none"
+        exact-active-class="text-red-950 border-b-4 border-red-950 font-bold"
       >
         List of Sports
-      </button>
       </RouterLink>
 
       <!-- Comment Tab -->
-      <RouterLink :to="{ name: 'country-comment-view' }">
-      <button
-        @click="selectTab('comment')"
-        :class="
-          activeTab === 'comment'
-            ? 'text-red-950 border-b-4 border-red-950 font-bold'
-            : 'text-slate-600 hover:text-red-950 hover:border-red-950 hover:font-bold cursor-pointer transition-colors duration-200'
-        "
-        class="text-2xl px-4 py-2 focus:outline-none"
+      <RouterLink
+        :to="{ name: 'country-comment-view' }"
+        class="text-slate-600 hover:text-red-950 hover:border-red-950 hover:font-bold cursor-pointer text-2xl px-4 py-2 focus:outline-none"
+        exact-active-class="text-red-950 border-b-4 border-red-950 font-bold"
       >
         Comment
-      </button>
       </RouterLink>
     </div>
 

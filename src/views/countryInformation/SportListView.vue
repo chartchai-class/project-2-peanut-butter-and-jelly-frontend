@@ -1,5 +1,13 @@
 <script setup lang="ts">
 import CountrySpList from '@/components/CountrySpList.vue';
+import { toRefs } from 'vue'
+import { type Country } from '@/types'
+
+const props = defineProps<{
+  country: Country
+  id: string
+}>()
+const { country } = toRefs(props)
 </script>
 <template>
     <h1>Sport Lists</h1>
@@ -11,7 +19,7 @@ import CountrySpList from '@/components/CountrySpList.vue';
       </tr>
     </thead>
     <tbody>
-      <CountrySpList/>
+      <CountrySpList v-for="sport in country.sport_list" :key="sport.sport_title" :sport="sport"/>
     </tbody>
   </table>
 </template>

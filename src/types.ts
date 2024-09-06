@@ -19,7 +19,7 @@ export interface Country {
 }
 
 export interface SportList {
-    sport_list: string,
+    sport_title: string,
     medal_type: string
 }
 
