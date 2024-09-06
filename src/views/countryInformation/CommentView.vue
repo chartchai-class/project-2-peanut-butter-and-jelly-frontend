@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import CommentBlock from '@/components/sportLists/CommentBlock.vue'
-import { useSportStore } from '@/stores/sport'
-import { useCommentStore } from '@/stores/comment'
+import { useCountryStore } from '@/stores/country'
+import { useCountryCommentStore } from '@/stores/countrycomment'
 import { computed, ref } from 'vue'
-import type { Comment } from '@/types'
 
-const sportStore = useSportStore() // เปลี่ยน
-const commentStore = useCommentStore() // เปลี่ยน
+const countryStore = useCountryStore() 
+const commentStore = useCountryCommentStore() 
 
 // Computed property to get the current sport from the store
-const sport = computed(() => sportStore.sport)
+const country = computed(() => countryStore.country)
 const isFormVisible = ref(false)
 
 // Local state for user input
@@ -18,21 +17,21 @@ const commentText = ref('')
 
 // Function to add a comment
 const addComment = () => {
-  if (sport.value && commentText.value.trim()) {
+  if (country.value && commentText.value.trim()) {
     const newAuthor = author.value.trim() || 'Anonymous'
     const newComment = {
       author: newAuthor,
       comment: commentText.value
     }
-    commentStore.addComment(sport.value.id.toString(), newComment)
+    commentStore.addComment(country.value.id.toString(), newComment)
     // Clear input fields after adding the comment
     commentText.value = ''
   }
 }
 
 // Computed property to get comments for the current sport
-const sportComments = computed(() => {
-  return sport.value ? commentStore.fetchComments(sport.value.id.toString()) : []
+const countryComments = computed(() => {
+  return country.value ? commentStore.fetchComments(country.value.id.toString()) : []
 })
 
 // Event handler for keydown events
@@ -45,21 +44,21 @@ const handleKeydown = (event: KeyboardEvent) => {
 const toggleForm = () => {
   isFormVisible.value = !isFormVisible.value
 }
-console.log(sportComments.value)
+console.log(countryComments.value)
 </script>
 
 <template>
-  <div v-if="sport">
+  <div v-if="country">
     <div class="overflow-auto" :class="{ 'pb-60': isFormVisible }">
-      <h1 class="text-5xl font-bold">Cheer up for <strong>Country Name</strong></h1> <!-- เปลี่ยน -->
+      <h1 class="text-5xl font-bold">Cheer up for {{ country.country }}</h1> 
       
       <!-- Comment section -->
       <div class="py-4">
-        <div class="px-6 py-2" v-if="sportComments.length > 0">
+        <div class="px-6 py-2" v-if="countryComments.length > 0">
           <h1 class="text-2xl text-slate-600">Cheer Up Comments:</h1>
-          <CommentBlock v-for="comment in sportComments" :key="comment.id" :comment="comment" />
+          <CommentBlock v-for="comment in countryComments" :key="comment.id" :comment="comment" />
         </div>
-        <div v-else class="grid justify-items-center text-slate-600 pt-12">
+        <div v-else class="grid justify-items-center text-slate-600 pt-20">
           <h1 class="text-2xl">No Comment</h1>
           <p>Be the first one who add a comment!</p>
         </div>
