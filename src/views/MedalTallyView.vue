@@ -2,19 +2,20 @@
 import MedalTally from '@/components/sportLists/MedalTally.vue';
 import SportService from '@/services/SportService';
 import { type Country } from '@/types';
+import { useLimitStore } from '@/stores/limit'
 import { ref, computed, watchEffect,onMounted } from 'vue';
-import { useRouter } from 'vue-router'
 
 
 const countries = ref<Country[] | null>(null)
 
-const router = useRouter()
+const limitStore = useLimitStore()
 
 const totalCountries = ref(0)
-var totalPage = 0
+const totalPage = computed(() => Math.ceil(totalCountries.value / limit.value))
+const limit = computed(() => limitStore.limit)
+
 const hasNextPage = computed(() => {
-  totalPage = Math.ceil(totalCountries.value / 2) // change with limit naa
-  return page.value < totalPage
+  return page.value < totalPage.value
 })
 const props = defineProps({
   page: {
@@ -27,12 +28,11 @@ const page = computed(() => props.page)
 console.log(page.value + '   ddfsdfs')
 onMounted(() => {
   watchEffect(() => {
-    SportService.getMedalTally(2, page.value) // change with limit naa
+    SportService.getMedalTally(limit.value, page.value)
     .then((response) => {
       countries.value = response.data
       totalCountries.value = response.headers['x-total-count']
     })
-    
   })
 })
 
@@ -72,12 +72,14 @@ onMounted(() => {
         v-if="hasNextPage"
         >Next Page &#62;</RouterLink
       >
-      
     </div>
     <div class="flex items-center">
       <label for="pageSize" class="text-gray-700 mr-2">Number of countries per page: </label>
-      <input id="pageSize" type="number" min="1" max="9" v-model.number="pageSize" class="border border-gray-300 rounded p-2 mt-1 w-14"/>
+      <input id="pageSize" type="number" min="1" max="9" v-model.number="limitStore.limit" class="border border-gray-300 rounded p-2 mt-1 w-14"/>
+
+    <!-- I'm not sure what is this for -->
     <p v-if="error" class="text-red-500 ml-2"> {{ error  }}</p>
+
     </div>
   </div>
   <table class="min-w-full bg-white border border-gray-300">
