@@ -77,8 +77,8 @@ onMounted(() => {
       <label for="pageSize" class="text-gray-700 mr-2">Number of countries per page: </label>
       <input id="pageSize" type="number" min="1" max="9" v-model.number="limitStore.limit" class="border border-gray-300 rounded p-2 mt-1 w-14"/>
 
-    <!-- I'm not sure what is this for -->
-    <p v-if="error" class="text-red-500 ml-2"> {{ error  }}</p>
+      <p v-if="limit > totalCountries" class="text-red-500 ml-2">The maximum allowed number of countries per page is {{ totalCountries }}</p>
+
 
     </div>
   </div>
