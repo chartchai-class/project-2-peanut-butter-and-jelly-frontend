@@ -54,23 +54,23 @@ onMounted(() => {
   <h1 class="text-2xl font-bold">Medal Tally</h1>
   <p>This is where your main content goes.</p>
 <div class="flex justify-between items-center mb-4">
-  <div class="w-[300px]">
+  <div class="w-[300px] inline-flex -space-x-px text-sm">
       <RouterLink
         :to="{ name: 'medal-tally-view', query: { page: page - 1 } }"
-        rel="prev" class="text-left text-custom-gray"
+        rel="prev" class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-red-200 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
         v-if="page != 1"
-        >&lt; Prev Page</RouterLink
+        > Previous </RouterLink
       >
       <RouterLink v-for="i in totalPage" 
-      :key="i" :to="{ name:  'medal-tally-view', query: { page: i } }" >
-       &nbsp; {{ i }} 
+      :key="i" :to="{ name:  'medal-tally-view', query: { page: i } }" class="flex items-center justify-center px-2 h-8 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 hover:bg-red-200 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+      
+      {{ i }} 
       </RouterLink>
-      &nbsp;
+
       <RouterLink
         :to="{ name: 'medal-tally-view', query: { page: page + 1 } }"
-        rel="next" class="text-right text-custom-gray"
-        v-if="hasNextPage"
-        >Next Page &#62;</RouterLink
+        rel="next" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-e-lg hover:bg-red-200 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+        v-if="hasNextPage">Next </RouterLink
       >
     </div>
     <div class="flex items-center">
