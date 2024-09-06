@@ -15,6 +15,8 @@ export interface Country {
     silver: number;
     bronze: number;
     total: number;
+    firstOlympicAppearance: string;
+    numberOfOlympicsParticipatedIn: number;
     sport_list: SportList[];
 }
 

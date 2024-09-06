@@ -1,16 +1,37 @@
 <script setup lang="ts">
-import { ref, computed, toRefs } from 'vue'
-import { useRoute } from 'vue-router'
+import { toRefs, computed } from 'vue'
 import { type Country } from '@/types'
-import { useCountryStore } from '@/stores/country'
 
 const props = defineProps<{
   country: Country
-  id: string
 }>()
 const { country } = toRefs(props)
-console.log(country)
+const sportsCount = computed(() => country.value.sport_list.length)
 </script>
 <template>
-  <h1>{{ country.country }}</h1>
+  <div class = "country-detail p-6 max-w-4xl mx-auto text-center">
+    <h1 class="text-4xl font-bold mb-4">{{  country.country }}</h1>
+    <img :src="country.img" :alt="`${country.country} flag`" class="w-32 mx-auto mb-4"/>
+    <p class="text-lg text-gray-700 mb-6">{{ country.desc }}</p>
+
+    <div class="medal-count grid grid-cols-3 gap-4 mb-8">
+      <div class="p-4 border rounded-lg bg-yellow-100">
+        <p class="text-2xl font-semibold">{{ country.gold }}</p>
+        <p class="text-lg text-gray-500">Gold</p>
+      </div>
+      <div class="p-4 border rounded-lg bg-gray-100">
+        <p class="text-2xl font-semibold">{{ country.silver }}</p>
+        <p class="text-lg text-gray-500">Silver</p>
+      </div>
+      <div class="p-4 border rounded-lg bg-orange-100">
+        <p class="text-2xl font-semibold">{{ country.bronze }}</p>
+        <p class="text-lg text-gray-500">Bronze</p>
+      </div>
+    </div>
+    <div class="sports-joined text-xl font-medium mb-6">
+      <p class="text-lg font-medium text-gray-600 text-left">Number of Sports Participated: {{ sportsCount }}</p>
+      <p class="text-lg font-medium text-gray-600 text-left">First Olympic Appearance: {{ country.firstOlympicAppearance }}</p>
+      <p class="text-lg font-medium text-gray-600 text-left">Number of Olympics Participated: {{ country.numberOfOlympicsParticipatedIn }}</p>
+    </div>
+  </div>
 </template>
