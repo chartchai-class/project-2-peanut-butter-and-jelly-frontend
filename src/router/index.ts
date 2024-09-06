@@ -19,6 +19,7 @@ const router = createRouter({
       path: '/',
       name: 'medal-tally-view',
       component: MedalTallyView,
+      props:(route) =>({ page: parseInt(route.query.page?.toString()  || '1')})
     },
     {
       path: '/country/:id',
