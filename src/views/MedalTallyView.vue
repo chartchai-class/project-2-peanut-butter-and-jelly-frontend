@@ -11,8 +11,9 @@ const countries = ref<Country[] | null>(null)
 const router = useRouter()
 
 const totalCountries = ref(0)
+var totalPage = 0
 const hasNextPage = computed(() => {
-  const totalPage = Math.ceil(totalCountries.value / 3)
+  totalPage = Math.ceil(totalCountries.value / 2) // change with limit naa
   return page.value < totalPage
 })
 const props = defineProps({
@@ -26,7 +27,7 @@ const page = computed(() => props.page)
 console.log(page.value + '   ddfsdfs')
 onMounted(() => {
   watchEffect(() => {
-    SportService.getMedalTally(2, page.value)
+    SportService.getMedalTally(2, page.value) // change with limit naa
     .then((response) => {
       countries.value = response.data
       totalCountries.value = response.headers['x-total-count']
@@ -40,13 +41,18 @@ onMounted(() => {
 <template>
   <h1 class="text-2xl font-bold">Medal Tally</h1>
   <p>This is where your main content goes.</p>
-  <div class="w-[290px]">
+  <div class="w-[300px]">
       <RouterLink
         :to="{ name: 'medal-tally-view', query: { page: page - 1 } }"
         rel="prev" class="text-left text-custom-gray"
         v-if="page != 1"
         >&lt; Prev Page</RouterLink
       >
+      <RouterLink v-for="i in totalPage" 
+      :key="i" :to="{ name:  'medal-tally-view', query: { page: i } }" >
+       &nbsp; {{ i }} 
+      </RouterLink>
+      &nbsp;
       <RouterLink
         :to="{ name: 'medal-tally-view', query: { page: page + 1 } }"
         rel="next" class="text-right text-custom-gray"
