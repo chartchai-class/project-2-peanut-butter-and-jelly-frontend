@@ -1,13 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
-// Track the currently selected tab
-const activeTab = ref('country-details')
-
-// Methods to change tabs
-const selectTab = (tab: string) => {
-  activeTab.value = tab
-}
 import { useCountryStore } from '@/stores/country'
 import { storeToRefs } from 'pinia'
 
@@ -46,21 +37,6 @@ const { country } = storeToRefs(countryStore)
       >
         Comment
       </RouterLink>
-    </div>
-
-    <!-- Country Details Section -->
-    <div v-if="activeTab === 'country-details'" class="py-4">
-      <h1 class="text-xl font-bold mb-2">Country Details</h1>
-    </div>
-
-    <!-- List of Sports Section -->
-    <div v-if="activeTab === 'list-of-sports'" class="py-4">
-      <h1 class="text-xl font-bold mb-2">List of Sports</h1>
-    </div>
-
-    <!-- Comment Section -->
-    <div v-if="activeTab === 'comment'" class="py-4">
-      <h1 class="text-xl font-bold mb-2">Comment</h1>
     </div>
   </div>
   <div class="py-2"></div>
