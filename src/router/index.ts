@@ -9,6 +9,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import nProgress from 'nprogress'
 import CountryLayoutView from '@/views/countryInformation/LayoutView.vue'
 import CountrySportListView from '@/views/countryInformation/SportListView.vue'
+import CountryCommentView from '@/views/countryInformation/CommentView.vue'
 import { useCountryStore } from '@/stores/country'
 
 const router = createRouter({
@@ -43,6 +44,11 @@ const router = createRouter({
           path: 'sport-list',
           name: 'country-sport-list-view',
           component: CountrySportListView
+        },
+        {
+          path: 'comment',
+          name: 'country-comment-view',
+          component: CountryCommentView
         }
       ]
     },
