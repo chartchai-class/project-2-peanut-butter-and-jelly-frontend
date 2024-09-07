@@ -12,16 +12,6 @@ import { RouterLink, RouterView } from 'vue-router'
       <ul>
         <li class="mb-4">
           <RouterLink
-            :to="{ name: 'about-view' }"
-            class="block hover:bg-red-950 hover:text-white hover:rounded-lg hover:px-4 hover:py-2 transition-all"
-            active-class="font-extrabold text-2xl rounded-lg px-4 py-2"
-          >
-            About 
-          </RouterLink>
-        </li>
-
-        <li class="mb-4">
-          <RouterLink
             :to="{ name: 'medal-tally-view' }"
             class="block hover:bg-red-950 hover:text-white hover:rounded-lg hover:px-4 hover:py-2 transition-all"
             active-class="font-extrabold text-2xl rounded-lg px-4 py-2"
@@ -36,6 +26,15 @@ import { RouterLink, RouterView } from 'vue-router'
             active-class="font-extrabold text-2xl rounded-lg px-4 py-2"
           >
             List of Sports
+          </RouterLink>
+        </li>
+        <li class="mb-4">
+          <RouterLink
+            :to="{ name: 'about-view' }"
+            class="block hover:bg-red-950 hover:text-white hover:rounded-lg hover:px-4 hover:py-2 transition-all"
+            active-class="font-extrabold text-2xl rounded-lg px-4 py-2"
+          >
+            About 
           </RouterLink>
         </li>
       </ul>
