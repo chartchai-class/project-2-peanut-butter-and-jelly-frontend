@@ -11,6 +11,8 @@ import CountryLayoutView from '@/views/countryInformation/LayoutView.vue'
 import CountrySportListView from '@/views/countryInformation/SportListView.vue'
 import CountryCommentView from '@/views/countryInformation/CommentView.vue'
 import { useCountryStore } from '@/stores/country'
+import Aboutview from '@view/Aboutview.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,6 +22,11 @@ const router = createRouter({
       name: 'medal-tally-view',
       component: MedalTallyView,
       props:(route) =>({ page: parseInt(route.query.page?.toString()  || '1')})
+    },
+    {
+      path: '/about',
+      name: 'about-view',
+      component: Aboutview,
     },
     {
       path: '/country/:id',
