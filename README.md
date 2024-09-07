@@ -6,5 +6,7 @@
 642115036 Pubordee Worathan
 642115506 Jireh Mae Muyana
 
-# Vercel Link
-https://project1-pbandj.vercel.app/
+# Vercel Links
+1) https://project1-pbandj.vercel.app/ **In  case of warning page when you open this page, you can either click on see more/detail and click on visit the site**
+**or...click on this link:** 
+2) https://project-1-pbandj.vercel.app/
