@@ -1,0 +1,78 @@
+/* OlympicGames.css */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  .olympic-games {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .main-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #004080;
+    margin-bottom: 40px;
+  }
+  
+  .section-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+  }
+  
+  .section-title {
+    color: #004080;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+  
+  .structure-grid, .values-grid, .symbols-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .value-card, .symbol-card {
+    background: #f0f8ff;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .value-card strong, .symbol-card strong {
+    color: #0056b3;
+    font-size: 1.2rem;
+  }
+  
+  .moments-list {
+    padding-left: 20px;
+  }
+  
+  .moments-list li {
+    margin-bottom: 10px;
+    color: #0056b3;
+  }
+  
+  .value-card:hover, .symbol-card:hover {
+    background-color: #e0f0ff;
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+  }
+  
+  @media (max-width: 768px) {
+    .main-title {
+      font-size: 2rem;
+    }
+  
+    .section-card {
+      padding: 15px;
+    }
+  }
+  

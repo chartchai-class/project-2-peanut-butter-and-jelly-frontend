@@ -80,13 +80,14 @@
 </template>
 
 <script>
+import '@/assets/about.css';  // Adjust the path based on your project structure
+
 export default {
   data() {
     return {
       history: `
-            The Olympic Games trace their origins to ancient Greece, where the first recorded Games took place in Olympia in 776 BC. These early Games were held in honor of Zeus, the king of the Greek gods, 
-        and included athletic competitions such as running, wrestling, and chariot racing.The modern Olympic Games were revived in 1896 by French educator Pierre de Coubertin, with the aim of promoting international 
-        understanding and peace through sports. The first modern Games were held in Athens, Greece, and have since grown into the largest and most prestigious international sporting event..
+        The Olympic Games trace their origins to ancient Greece, where the first recorded Games took place in 776 BC. 
+        They were revived in 1896 by Pierre de Coubertin, aiming to promote international peace and understanding through sports.
       `,
       structure: {
         governance: "International Olympic Committee (IOC)",
@@ -116,85 +117,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-/* General Styles */
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
-}
-
-.olympic-games {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.main-title {
-  text-align: center;
-  font-size: 2.5rem;
-  color: #004080;
-  margin-bottom: 40px;
-}
-
-/* Section Styles */
-.section-card {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 40px;
-}
-
-.section-title {
-  color: #004080;
-  font-size: 1.8rem;
-  margin-bottom: 20px;
-}
-
-/* Grid for Structure, Values, and Symbols */
-.structure-grid, .values-grid, .symbols-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-
-.value-card, .symbol-card {
-  background: #f0f8ff;
-  padding: 15px;
-  border-radius: 8px;
-  text-align: center;
-}
-
-.value-card strong, .symbol-card strong {
-  color: #0056b3;
-  font-size: 1.2rem;
-}
-
-.moments-list {
-  padding-left: 20px;
-}
-
-.moments-list li {
-  margin-bottom: 10px;
-  color: #0056b3;
-}
-
-/* Hover and interactive effects */
-.value-card:hover, .symbol-card:hover {
-  background-color: #e0f0ff;
-  transform: translateY(-5px);
-  transition: all 0.3s ease;
-}
-
-@media (max-width: 768px) {
-  .main-title {
-    font-size: 2rem;
-  }
-
-  .section-card {
-    padding: 15px;
-  }
-}
-</style>
