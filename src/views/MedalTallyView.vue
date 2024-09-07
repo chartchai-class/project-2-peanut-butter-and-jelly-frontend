@@ -3,52 +3,38 @@ import MedalTally from '@/components/sportLists/MedalTally.vue';
 import SportService from '@/services/SportService';
 import { type Country } from '@/types';
 import { useLimitStore } from '@/stores/limit'
-import { ref, computed, watchEffect,onMounted } from 'vue';
+import { ref, computed, watchEffect, onMounted } from 'vue';
 
+const countries = ref<Country[] | null>(null);
 
-const countries = ref<Country[] | null>(null)
+const limitStore = useLimitStore(); // Using Pinia store
 
-const limitStore = useLimitStore()
-
-const totalCountries = ref(0)
-const totalPage = computed(() => Math.ceil(totalCountries.value / limit.value))
-const limit = computed(() => limitStore.limit)
+const totalCountries = ref(0);
+const limit = computed(() => limitStore.limit); // Limit from store
+const totalPage = computed(() => Math.ceil(totalCountries.value / (limit.value || 1))); // Fallback to avoid division by 0
 
 const hasNextPage = computed(() => {
-  return page.value < totalPage.value
-})
+  return page.value < totalPage.value;
+});
+
 const props = defineProps({
   page: {
     type: Number,
-    required: true
+    required: true,
   },
-})
+});
 
-const page = computed(() => props.page)
-console.log(page.value + '   ddfsdfs')
+const page = computed(() => props.page);
+
 onMounted(() => {
   watchEffect(() => {
-    SportService.getMedalTally(limit.value, page.value)
-    .then((response) => {
-      countries.value = response.data
-      totalCountries.value = response.headers['x-total-count']
-    })
-  })
-})
-
-// Jireh ------------
-// const pageSize = ref<number | null>(null);
-// const error = ref<string | null>(null);
-
-// watch(pageSize, (newSize) => {
-//   if(newSize !== null && newSize > 9) {
-//     pageSize.value = 9;
-//   } else {
-//     error.value = null;
-//   }
-//   currentPage.value = 1;
-// });
-// ---------------------
+    SportService.getMedalTally((limit.value || 1), page.value)
+      .then((response) => {
+        countries.value = response.data;
+        totalCountries.value = response.headers['x-total-count'];
+      });
+  });
+});
 </script>
 <template>
   <h1 class="text-2xl font-bold">Medal Tally</h1>
