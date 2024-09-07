@@ -11,7 +11,7 @@ import CountryLayoutView from '@/views/countryInformation/LayoutView.vue'
 import CountrySportListView from '@/views/countryInformation/SportListView.vue'
 import CountryCommentView from '@/views/countryInformation/CommentView.vue'
 import { useCountryStore } from '@/stores/country'
-import Aboutview from '@view/Aboutview.vue'
+import AboutView from '@/views/Aboutview.vue'
 
 
 const router = createRouter({
@@ -26,7 +26,7 @@ const router = createRouter({
     {
       path: '/about',
       name: 'about-view',
-      component: Aboutview,
+      component: AboutView
     },
     {
       path: '/country/:id',
