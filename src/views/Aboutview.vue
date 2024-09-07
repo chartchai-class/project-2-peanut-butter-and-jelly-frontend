@@ -1,63 +1,79 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="olympic-games">
-    <h1>Introduction to the Olympic Games</h1>
+    <h1 class="main-title">Introduction to the Olympic Games</h1>
 
     <!-- History Section -->
-    <section>
-      <h2>History</h2>
+    <section class="history section-card">
+      <h2 class="section-title">History</h2>
       <p>{{ history }}</p>
     </section>
 
     <!-- Structure Section -->
-    <section>
-      <h2>Structure</h2>
-      <h3>Governance</h3>
-      <p>{{ structure.governance }}</p>
+    <section class="structure section-card">
+      <h2 class="section-title">Structure</h2>
 
-      <h3>Frequency</h3>
-      <p>{{ structure.frequency }}</p>
+      <div class="structure-grid">
+        <div>
+          <h3>Governance</h3>
+          <p>{{ structure.governance }}</p>
+        </div>
 
-      <h3>Categories</h3>
-      <ul>
-        <li v-for="category in structure.categories" :key="category">{{ category }}</li>
-      </ul>
+        <div>
+          <h3>Frequency</h3>
+          <p>{{ structure.frequency }}</p>
+        </div>
 
-      <h3>Sports</h3>
-      <div v-for="(sports, season) in structure.sports" :key="season">
-        <h4>{{ season }} Sports</h4>
-        <ul>
-          <li v-for="sport in sports" :key="sport">{{ sport }}</li>
-        </ul>
+        <div>
+          <h3>Categories</h3>
+          <ul>
+            <li v-for="category in structure.categories" :key="category">{{ category }}</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Summer Sports</h3>
+          <ul>
+            <li v-for="sport in structure.sports.Summer" :key="sport">{{ sport }}</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Winter Sports</h3>
+          <ul>
+            <li v-for="sport in structure.sports.Winter" :key="sport">{{ sport }}</li>
+          </ul>
+        </div>
       </div>
     </section>
 
     <!-- Values Section -->
-    <section>
-      <h2>Olympic Values</h2>
-      <ul>
-        <li v-for="(description, value) in values" :key="value">
-          <strong>{{ value }}:</strong> {{ description }}
-        </li>
-      </ul>
+    <section class="values section-card">
+      <h2 class="section-title">Olympic Values</h2>
+      <div class="values-grid">
+        <div v-for="(description, value) in values" :key="value" class="value-card">
+          <strong>{{ value }}:</strong>
+          <p>{{ description }}</p>
+        </div>
+      </div>
     </section>
 
     <!-- Symbols Section -->
-    <section>
-      <h2>Symbols and Traditions</h2>
-      <ul>
-        <li v-for="(description, symbol) in symbols" :key="symbol">
-          <strong>{{ symbol }}:</strong> {{ description }}
-        </li>
-      </ul>
+    <section class="symbols section-card">
+      <h2 class="section-title">Symbols and Traditions</h2>
+      <div class="symbols-grid">
+        <div v-for="(description, symbol) in symbols" :key="symbol" class="symbol-card">
+          <strong>{{ symbol }}:</strong>
+          <p>{{ description }}</p>
+        </div>
+      </div>
     </section>
 
     <!-- Notable Moments Section -->
-    <section>
-      <h2>Notable Moments</h2>
-      <ul>
-        <li v-for="moment in notableMoments" :key="moment">
-          {{ moment }}
-        </li>
+    <section class="moments section-card">
+      <h2 class="section-title">Notable Moments</h2>
+      <ul class="moments-list">
+        <li v-for="moment in notableMoments" :key="moment">{{ moment }}</li>
       </ul>
     </section>
   </div>
@@ -68,8 +84,9 @@ export default {
   data() {
     return {
       history: `
-        The Olympic Games trace their origins to ancient Greece, where the first recorded Games took place in 776 BC. 
-        They were revived in 1896 by Pierre de Coubertin, aiming to promote international peace and understanding through sports.
+            The Olympic Games trace their origins to ancient Greece, where the first recorded Games took place in Olympia in 776 BC. These early Games were held in honor of Zeus, the king of the Greek gods, 
+        and included athletic competitions such as running, wrestling, and chariot racing.The modern Olympic Games were revived in 1896 by French educator Pierre de Coubertin, with the aim of promoting international 
+        understanding and peace through sports. The first modern Games were held in Athens, Greece, and have since grown into the largest and most prestigious international sporting event..
       `,
       structure: {
         governance: "International Olympic Committee (IOC)",
@@ -101,17 +118,83 @@ export default {
 </script>
 
 <style scoped>
+/* General Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
 .olympic-games {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 20px;
 }
 
-h1, h2, h3 {
+.main-title {
+  text-align: center;
+  font-size: 2.5rem;
   color: #004080;
+  margin-bottom: 40px;
 }
 
-section {
-  margin-bottom: 30px;
+/* Section Styles */
+.section-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+.section-title {
+  color: #004080;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+/* Grid for Structure, Values, and Symbols */
+.structure-grid, .values-grid, .symbols-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.value-card, .symbol-card {
+  background: #f0f8ff;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.value-card strong, .symbol-card strong {
+  color: #0056b3;
+  font-size: 1.2rem;
+}
+
+.moments-list {
+  padding-left: 20px;
+}
+
+.moments-list li {
+  margin-bottom: 10px;
+  color: #0056b3;
+}
+
+/* Hover and interactive effects */
+.value-card:hover, .symbol-card:hover {
+  background-color: #e0f0ff;
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 2rem;
+  }
+
+  .section-card {
+    padding: 15px;
+  }
 }
 </style>
