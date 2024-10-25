@@ -12,6 +12,7 @@ import CountrySportListView from '@/views/countryInformation/SportListView.vue'
 import CountryCommentView from '@/views/countryInformation/CommentView.vue'
 import { useCountryStore } from '@/stores/country'
 import AboutView from '@/views/Aboutview.vue'
+import LoginView from '@/views/LoginView.vue'
 
 
 const router = createRouter({
@@ -27,6 +28,11 @@ const router = createRouter({
       path: '/about',
       name: 'about-view',
       component: AboutView
+    },
+    {
+    path: '/login',
+    name: 'login-view',
+    component: LoginView
     },
     {
       path: '/country/:id',
