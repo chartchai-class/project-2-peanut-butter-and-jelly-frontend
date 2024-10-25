@@ -13,6 +13,7 @@ import CountryCommentView from '@/views/countryInformation/CommentView.vue'
 import { useCountryStore } from '@/stores/country'
 import AboutView from '@/views/Aboutview.vue'
 import LoginView from '@/views/LoginView.vue'
+import RegisterView from '@/views/RegisterView.vue'
 
 
 const router = createRouter({
@@ -33,6 +34,11 @@ const router = createRouter({
     path: '/login',
     name: 'login-view',
     component: LoginView
+    },
+    {
+      path: '/register',
+      name: 'register-view',
+      component: RegisterView
     },
     {
       path: '/country/:id',
