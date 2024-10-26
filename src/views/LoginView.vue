@@ -99,8 +99,8 @@ const onSubmit = handleSubmit(async (values) => {
             </form>
             <p class="mt-10 text-center text-sm text-gray-500">
                 Not a member?
-                <!-- <RouterLink :to="{ name: 'register-view' }" a href="#" class="font-semibold leading-6 text-red-950 hover:text-red-950">Register here</RouterLink> -->
-                <a href="#" class="font-semibold leading-6 text-red-950 hover:text-red-950">Register here</a>
+                <RouterLink :to="{ name: 'register-view' }" a href="#" class="font-semibold leading-6 text-red-950 hover:text-red-950">Register here</RouterLink>
+                <!-- <a href="#" class="font-semibold leading-6 text-red-950 hover:text-red-950">Register here</a> -->
             </p>
             <div v-if="errorMessage" class="text-red-600 text-center mt-4">
     {{ errorMessage }}
