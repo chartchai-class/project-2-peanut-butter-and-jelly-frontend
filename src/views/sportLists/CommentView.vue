@@ -51,11 +51,11 @@ console.log(sportComments.value)
 <template>
   <div v-if="sport">
     <div class="overflow-auto" :class="{ 'pb-60': isFormVisible }">
-      <h1 class="text-5xl font-bold">{{ sport.sport_title }}</h1>
+      <h1 class="text-5xl font-bold">{{ sport.title }}</h1>
       <div class="py-4">
-        <h1>&#x1f947; <a class="font-bold">1st place:</a> {{ sport.gold }}</h1>
-        <h1>&#x1f948; <a class="font-bold">2nd place:</a> {{ sport.silver }}</h1>
-        <h1>&#x1f949; <a class="font-bold">3rd place:</a> {{ sport.bronze }}</h1>
+        <h1>&#x1f947; <a class="font-bold">1st place:</a> {{ sport.gold.countryName }}</h1>
+        <h1>&#x1f948; <a class="font-bold">2nd place:</a> {{ sport.silver.countryName }}</h1>
+        <h1>&#x1f949; <a class="font-bold">3rd place:</a> {{ sport.bronze.countryName }}</h1>
       </div>
       <!-- Comment section -->
       <div class="py-4">

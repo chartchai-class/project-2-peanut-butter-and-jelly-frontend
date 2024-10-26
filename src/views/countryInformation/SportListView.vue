@@ -19,7 +19,9 @@ const { country } = toRefs(props)
       </tr>
     </thead>
     <tbody>
-      <CountrySpList v-for="sport in country.sport_list" :key="sport.sport_title" :sport="sport"/>
+      <CountrySpList v-for="sport in country.goldMedals" :key="sport.id" :sport="sport" :medal="'GOLD'"/>
+      <CountrySpList v-for="sport in country.silverMedals" :key="sport.id" :sport="sport" :medal="'SILVER'"/>
+      <CountrySpList v-for="sport in country.bronzeMedals" :key="sport.id" :sport="sport" :medal="'BRONZE'"/>
     </tbody>
   </table>
 </template>
