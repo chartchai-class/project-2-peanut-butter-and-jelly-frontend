@@ -8,14 +8,6 @@ import apiClient from './AxiosClient'
 //     'Content-Type': 'application/json'
 //   }
 // })
-const apiClient = axios.create({
-  // baseURL: 'https://my-json-server.typicode.com/chartchai-class/PBandJ_data',
-  baseURL: import.meta.env.VITE_BACKEND_URL,
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
-  }
-})
 
 export default {
   getMedalTally(limit: Number, page: Number) {
