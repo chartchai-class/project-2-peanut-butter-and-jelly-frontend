@@ -53,3 +53,8 @@ export interface Comment {
   author: string
   comment: string
 }
+
+export interface MessageState {
+  message: string
+  messageType: 'success' | 'error' | '';
+}

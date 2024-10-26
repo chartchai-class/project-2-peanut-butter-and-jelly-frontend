@@ -14,6 +14,7 @@ import { useCountryStore } from '@/stores/country'
 import AboutView from '@/views/Aboutview.vue'
 import LoginView from '@/views/LoginView.vue'
 import RegisterView from '@/views/RegisterView.vue'
+import { auth } from '@/firebase';
 
 
 const router = createRouter({
@@ -100,9 +101,18 @@ const router = createRouter({
     }
   ]
 })
-router.beforeEach(() => {
+router.beforeEach((to, from, next) => {
   nProgress.start()
-})
+
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+  const user = auth.currentUser;
+
+  if (requiresAuth && !user){
+    next('/login')
+  }else{
+    next()
+  }
+});
 router.afterEach(() => {
   nProgress.done()
 })

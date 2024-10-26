@@ -1,5 +1,13 @@
-import axios from 'axios'
+import apiClient from './AxiosClient'
+// import axios from 'axios'
 
+// const apiClient = axios.create({
+//   baseURL: 'https://my-json-server.typicode.com/chartchai-class/PBandJ_data',
+//   headers: {
+//     Accept: 'application/json',
+//     'Content-Type': 'application/json'
+//   }
+// })
 const apiClient = axios.create({
   // baseURL: 'https://my-json-server.typicode.com/chartchai-class/PBandJ_data',
   baseURL: import.meta.env.VITE_BACKEND_URL,
