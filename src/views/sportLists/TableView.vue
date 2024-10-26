@@ -26,7 +26,7 @@ SportService.getSportList().then((res) => {
       </tr>
     </thead>
     <tbody>
-      <SportListTable v-for="sport in sports" :key="sport.sport_title" :sport="sport" />
+      <SportListTable v-for="sport in sports" :key="sport.title" :sport="sport" />
     </tbody>
   </table>
 </template>
