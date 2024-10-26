@@ -8,6 +8,10 @@ import { useMessageStore } from '@/stores/message'
 import { useRouter } from 'vue-router'
 import { auth } from '@/firebase';
 
+import { ref } from 'vue';
+
+const errorMessage = ref('');
+
 
 const messageStore = useMessageStore()
 const router = useRouter()
@@ -26,20 +30,22 @@ const { errors, handleSubmit } = useForm({
     }
 })
 
-const { value:email }= useField<String>('email')
-const { value:password }=useField<String>('password')
-const onSubmit = handleSubmit((values) => {
-    authStore.login(values.email, values.password)
-    .then(() => {
-        router.push({ name:'medal-tally-view'})
-    }).catch((err) => {
-            messageStore.updateMessage('could not login', 'error')
-        setTimeout(() =>{
-            messageStore.resetMessage()
+const { value: email } = useField<string>('email')
+const { value: password } = useField<string>('password')
+
+const onSubmit = handleSubmit(async (values) => {
+    try {
+        await authStore.login(values.email, values.password)
+        router.push({ name: 'medal-tally-view' })
+    } catch (err) {
+        errorMessage.value = 'Could not login. Please check your email and password.'
+        setTimeout(() => {
+            errorMessage.value = ''
         }, 3000)
         console.log('error', err)
-    })
+    }
 })
+
 // export default defineComponent({
 //     setup(){
 //         const email = ref("");
@@ -96,6 +102,10 @@ const onSubmit = handleSubmit((values) => {
                 <!-- <RouterLink :to="{ name: 'register-view' }" a href="#" class="font-semibold leading-6 text-red-950 hover:text-red-950">Register here</RouterLink> -->
                 <a href="#" class="font-semibold leading-6 text-red-950 hover:text-red-950">Register here</a>
             </p>
+            <div v-if="errorMessage" class="text-red-600 text-center mt-4">
+    {{ errorMessage }}
+</div>
+
         </div>
     </div>
 </template>
