@@ -1,28 +1,43 @@
 export interface Sport {
   id: number
-  sport_title: string
-  gold: string
-  silver: string
-  bronze: string
+  title: string
+  gold: SportCountry
+  silver: SportCountry
+  bronze: SportCountry
+}
+
+export interface SportCountry {
+  id: number
+  countryName: string
+  desc: string
+  img: string
+  amountGold: number
+  amountSilver: number
+  amountBronze: number
+  total: number
+  firstOlympicAppearance: string
+  numberOfOlympicsParticipatedIn: number
 }
 
 export interface Country {
-    id: number,
-    country: string,
-    desc: string;
-    img: string;
-    gold: number;
-    silver: number;
-    bronze: number;
-    total: number;
-    firstOlympicAppearance: string;
-    numberOfOlympicsParticipatedIn: number;
-    sport_list: SportList[];
+  id: number
+  countryName: string
+  desc: string
+  img: string
+  amountGold: number
+  amountSilver: number
+  amountBronze: number
+  total: number
+  firstOlympicAppearance: string
+  numberOfOlympicsParticipatedIn: number
+  goldMedals: SportList[]
+  silverMedals: SportList[]
+  bronzeMedals: SportList[]
 }
 
 export interface SportList {
-    sport_title: string,
-    medal_type: string
+  id: number
+  title: string
 }
 
 export interface SportState {

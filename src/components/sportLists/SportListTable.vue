@@ -12,9 +12,9 @@ const navigateToCommentView = () => {
 
 <template>
   <tr class="hover:bg-gray-100 cursor-pointer" @click="navigateToCommentView">
-    <td class="py-2 px-4 border-b">{{ sport.sport_title }}</td>
-    <td class="py-2 px-4 border-b">{{ sport.gold }}</td>
-    <td class="py-2 px-4 border-b">{{ sport.silver }}</td>
-    <td class="py-2 px-4 border-b">{{ sport.bronze }}</td>
+    <td class="py-2 px-4 border-b">{{ sport.title }}</td>
+    <td class="py-2 px-4 border-b">{{ sport.gold.countryName }}</td>
+    <td class="py-2 px-4 border-b">{{ sport.silver.countryName }}</td>
+    <td class="py-2 px-4 border-b">{{ sport.bronze.countryName }}</td>
   </tr>
 </template>
