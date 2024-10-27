@@ -73,9 +73,11 @@ export interface User{
 export interface UserState{
   user: User | null
 }
-export interface CountryInfo{
-  id: number
-  countryName: string
-  description: string
-  flag: string
+export interface CountryInfo {
+  id: number;
+  countryName: string;
+  description: string;
+  flag: string;
+  sports: string[]; 
 }
+

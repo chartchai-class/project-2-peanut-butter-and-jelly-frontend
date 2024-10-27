@@ -11,8 +11,11 @@ const countryInfo = ref<CountryInfo>({
     id: 0,
     countryName: '',
     description: '',
-    flag: ''
+    flag: '',
+    sports: []
 })
+
+const newSport = ref('') // Holds the value of the new sport to add
 
 onMounted(()=> {
   CountryService.getCountry()
@@ -44,6 +47,14 @@ function saveCountry() {
         router.push({ name: 'NetworkError' })
     })
 }
+
+
+function addSport() {
+    if (newSport.value) {
+        countryInfo.value.sports.push(newSport.value)
+        newSport.value = '' 
+    }
+}
 </script>
 
 <template>
@@ -56,12 +67,17 @@ function saveCountry() {
             <h3>Description of Country: </h3>
             <InputText v-model="countryInfo.description" type="text" label="Description" />
 
-            <h3>Country Flag</h3>
-            <ImageUpload v-model="countryInfo.flag" label="Flag" />
+            <h3>Add Sport:</h3>
+            <div class="sport-input">
+                <InputText v-model="newSport" type="text" placeholder="Enter a sport" />
+            </div>
+            <ul>
+                <li v-for="(sport, index) in countryInfo.sports" :key="index">{{ sport }}</li>
+            </ul>
 
             <button class="button" type="submit">Submit</button>
         </form>
-    <pre>{{ countryInfo }}</pre>
+    
     </div>
 </template>
 
@@ -123,7 +139,7 @@ label {
 
 pre {
   margin-top: 20px;
-  background-color: #333;
+  background-color: #ff0000;
   color: #fff;
   padding: 10px;
   border-radius: 4px;
