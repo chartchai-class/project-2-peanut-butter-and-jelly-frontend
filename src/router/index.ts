@@ -16,6 +16,7 @@ import LoginView from '@/views/LoginView.vue'
 import RegisterView from '@/views/RegisterView.vue'
 import { auth } from '@/firebase';
 import UsersView from "@/views/UsersView.vue"
+import CountryManaged from "@/views/CountryManagedView.vue"
 
 
 const router = createRouter({
@@ -25,6 +26,11 @@ const router = createRouter({
       path: '/user',
       name: 'user-view',
       component: UsersView,
+    },
+    {
+      path: '/countrymanaged',
+      name: 'countrymanaged-view',
+      component: CountryManaged,
     },
     {
       path: '/',

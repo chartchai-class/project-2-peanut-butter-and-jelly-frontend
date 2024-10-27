@@ -58,6 +58,9 @@ export interface MessageState {
   message: string
   messageType: 'success' | 'error' | '';
 }
+export interface Page {
+  pageOfNumber: number;
+}
 
 export interface User{
   id: number
@@ -69,4 +72,10 @@ export interface User{
 
 export interface UserState{
   user: User | null
+}
+export interface CountryInfo{
+  id: number
+  countryName: string
+  description: string
+  flag: string
 }
