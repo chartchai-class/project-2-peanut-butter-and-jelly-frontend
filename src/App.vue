@@ -38,6 +38,15 @@ import { RouterLink, RouterView } from 'vue-router'
           </RouterLink>
         </li>
         <li class="mb-4">
+          <RouterLink
+            :to="{ name: 'user-view' }"
+            class="block hover:bg-red-950 hover:text-white hover:rounded-lg hover:px-4 hover:py-2 transition-all"
+            active-class="font-extrabold text-2xl rounded-lg px-4 py-2"
+          >
+            User
+          </RouterLink>
+        </li>
+        <li class="mb-4">
         <RouterLink
             :to="{ name: 'login-view' }"
             class="flex items-center justify center text-center bg-gray-200 text-gray-600 font-extrabold text-2xl rounded-lg px-4 py-2  hover:bg-red-950 hover:text-white hover:rounded-lg hover:px-4 hover:py-2 transition-all"

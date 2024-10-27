@@ -15,11 +15,17 @@ import AboutView from '@/views/Aboutview.vue'
 import LoginView from '@/views/LoginView.vue'
 import RegisterView from '@/views/RegisterView.vue'
 import { auth } from '@/firebase';
+import UsersView from "@/views/UsersView.vue"
 
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: '/user',
+      name: 'user-view',
+      component: UsersView,
+    },
     {
       path: '/',
       name: 'medal-tally-view',
