@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  frontend:
+    image: your_docker_username/se331-frontend:latest
+    ports:
+      - "8001:80"
+  backend:
+    image: your_docker_username/se331-backend:latest
+    ports:
+      - "8999:8080"
