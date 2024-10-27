@@ -36,6 +36,7 @@ const { value: password } = useField<string>('password')
 const onSubmit = handleSubmit(async (values) => {
     try {
         await authStore.login(values.email, values.password)
+        console.log('Access Token:', authStore)
         router.push({ name: 'medal-tally-view' })
     } catch (err) {
         errorMessage.value = 'Could not login. Please check your email and password.'
@@ -103,8 +104,8 @@ const onSubmit = handleSubmit(async (values) => {
                 <!-- <a href="#" class="font-semibold leading-6 text-red-950 hover:text-red-950">Register here</a> -->
             </p>
             <div v-if="errorMessage" class="text-red-600 text-center mt-4">
-    {{ errorMessage }}
-</div>
+                {{ errorMessage }}
+            </div>
 
         </div>
     </div>

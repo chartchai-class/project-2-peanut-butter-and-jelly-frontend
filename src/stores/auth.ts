@@ -28,19 +28,42 @@ export const useAuthStore = defineStore('auth', {
                 return response
             })
         },
-        register(name: string, email: string, password: string){
-            return apiClient
-            .post('/api/v1/auth/authenticate', {
-                name: name,
-                username: email,
-                password: password,
-            })
-            .then((response) => {
-                this.token = response.data.access_token
-                localStorage.setItem('access_token', this.token as string)
-                axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
-                return response
-            })
-        }
+        // register(name: string, email: string, password: string){
+        //     return apiClient
+        //     .post('/api/v1/auth/register', {
+        //         name: name,
+        //         username: email,
+        //         password: password,
+        //     })
+        //     .then((response) => {
+        //         this.token = response.data.access_token
+        //         localStorage.setItem('access_token', this.token as string)
+        //         axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
+        //         return response
+        //     }).catch((error) => {
+        //         console.error('Registration error: ', error)
+        //         throw error
+        //     })
+        // }
+    // authStore register action
+register({ firstname, lastname, email, password }: { firstname: string, lastname: string, email: string, password: string }) {
+    return apiClient
+        .post('/api/v1/auth/register', {
+            firstname: firstname,
+            lastname: lastname,
+            email: email,
+            password: password,
+        })
+        .then((response) => {
+            this.token = response.data.access_token;
+            localStorage.setItem('access_token', this.token as string);
+            axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`;
+            return response;
+        })
+        .catch((error) => {
+            console.error('Registration error: ', error);
+            throw error;
+        });
     }
+}
 })
