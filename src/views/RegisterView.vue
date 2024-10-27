@@ -12,6 +12,7 @@ const authStore = useAuthStore();
 
 const validationSchema = yup.object({
     name: yup.string().required('Name is required'),
+    username: yup.string().required('Username is required'),
     email: yup.string().email('Email must be a valid email').required('Email is required'),
     password: yup.string().required('Password is required').min(6, 'Password must be at least 6 characters'),
     confirmPassword: yup.string()
@@ -23,6 +24,7 @@ const { errors, handleSubmit } = useForm({
     validationSchema,
     initialValues: {
         name: '',
+        username: '',
         email: '',
         password: '',
         confirmPassword: '',
@@ -30,6 +32,7 @@ const { errors, handleSubmit } = useForm({
 });
 
 const { value: name } = useField<string>('name');
+const { value: username } = useField<string>('username');
 const { value: email } = useField<string>('email');
 const { value: password } = useField<string>('password');
 const { value: confirmPassword } = useField<string>('confirmPassword');
@@ -84,6 +87,10 @@ const onSubmit = handleSubmit(async (values) => {
                 <div>
                     <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
                     <InputText v-model="name" type="text" placeholder="Your Name" required class="block w-full rounded-md text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-red-950 sm:text-sm sm:leading-6" :error="errors['name']" />
+                </div>
+                <div>
+                    <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Username</label>
+                    <InputText v-model="username" type="text" placeholder="Username" required class="block w-full rounded-md text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-red-950 sm:text-sm sm:leading-6" :error="errors['username']" />
                 </div>
                 <div>
                     <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>

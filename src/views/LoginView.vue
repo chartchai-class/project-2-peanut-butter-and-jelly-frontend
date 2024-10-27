@@ -18,28 +18,28 @@ const router = useRouter()
 const authStore = useAuthStore()
 
 const validationSchema = yup.object({
-    email: yup.string().required('Email is required'),
+    username: yup.string().required('Username is required'),
     password: yup.string().required('Password is required')
 })
 const { errors, handleSubmit } = useForm({
     validationSchema,
     initialValues:
     {
-        email: '',
+        username: '',
         password: ''
     }
 })
 
-const { value: email } = useField<string>('email')
+const { value: username } = useField<string>('username')
 const { value: password } = useField<string>('password')
 
 const onSubmit = handleSubmit(async (values) => {
     try {
-        await authStore.login(values.email, values.password)
+        await authStore.login(values.username, values.password)
         console.log('Access Token:', authStore)
         router.push({ name: 'medal-tally-view' })
     } catch (err) {
-        errorMessage.value = 'Could not login. Please check your email and password.'
+        errorMessage.value = 'Login failed. Please check your username and password.'
         setTimeout(() => {
             errorMessage.value = ''
         }, 3000)
@@ -75,10 +75,10 @@ const onSubmit = handleSubmit(async (values) => {
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form class="space-y-6" @submit.prevent="onSubmit">
                 <div>
-                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+                    <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Username</label>
                     <!-- <div class="mt-2"> -->
-                    <InputText type="text" v-model="email" placeholder="Email address" required class="block w-full rounded-md  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-red-950 sm:text-sm sm:leading-6"
-                    :error="errors['email']"></InputText>
+                    <InputText type="text" v-model="username" placeholder="Username" required class="block w-full rounded-md  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-red-950 sm:text-sm sm:leading-6"
+                    :error="errors['username']"></InputText>
                     </div>       
                 <div>
                     <div class="flex items-center justify-between">
