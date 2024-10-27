@@ -46,7 +46,7 @@ import { RouterLink, RouterView } from 'vue-router'
             User
           </RouterLink>
         </li>
-        <li class="mb-4">
+        <!-- <li class="mb-4">
           <RouterLink
             :to="{ name: 'countrymanaged-view' }"
             class="block hover:bg-red-950 hover:text-white hover:rounded-lg hover:px-4 hover:py-2 transition-all"
@@ -54,7 +54,7 @@ import { RouterLink, RouterView } from 'vue-router'
           >
             Managed
           </RouterLink>
-        </li>
+        </li> -->
         <li class="mb-4">
         <RouterLink
             :to="{ name: 'login-view' }"
