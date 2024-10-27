@@ -57,7 +57,7 @@ const onSubmit = handleSubmit(async (values) => {
         const lastname = lastnameParts.join(' ');
 
         // Call the register function with the payload
-        await authStore.register({ firstname, lastname, email: values.email, password: values.password });
+        await authStore.register({ firstname, lastname, username: values.username, email: values.email, password: values.password });
         messageStore.updateMessage('Registration successful', 'success');
         setTimeout(() => {
             messageStore.resetMessage();

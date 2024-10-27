@@ -46,12 +46,14 @@ export const useAuthStore = defineStore('auth', {
         //     })
         // }
         // authStore register action
-        async register({ firstname, lastname, email, password }: { firstname: string, lastname: string, email: string, password: string }) {
+        async register({ firstname, lastname, username, email, password }: { firstname: string, lastname: string, username: string, email: string, password: string }) {
             try {
                 const response = await apiClient
                     .post('/api/v1/auth/register', {
+                        enable: true,
                         firstname: firstname,
                         lastname: lastname,
+                        username: username,
                         email: email,
                         password: password,
                     })
