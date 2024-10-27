@@ -12,10 +12,8 @@ const countryInfo = ref<CountryInfo>({
     countryName: '',
     description: '',
     flag: '',
-    sports: []
 })
 
-const newSport = ref('') // Holds the value of the new sport to add
 
 onMounted(()=> {
   CountryService.getCountry()
@@ -49,12 +47,12 @@ function saveCountry() {
 }
 
 
-function addSport() {
-    if (newSport.value) {
-        countryInfo.value.sports.push(newSport.value)
-        newSport.value = '' 
-    }
-}
+// function addSport() {
+//     if (newSport.value) {
+//         countryInfo.value.sports.push(newSport.value)
+//         newSport.value = '' 
+//     }
+// }
 </script>
 
 <template>
@@ -67,13 +65,13 @@ function addSport() {
             <h3>Description of Country: </h3>
             <InputText v-model="countryInfo.description" type="text" label="Description" />
 
-            <h3>Add Sport:</h3>
+            <!-- <h3>Add Sport:</h3>
             <div class="sport-input">
                 <InputText v-model="newSport" type="text" placeholder="Enter a sport" />
-            </div>
-            <ul>
+            </div> -->
+            <!-- <ul>
                 <li v-for="(sport, index) in countryInfo.sports" :key="index">{{ sport }}</li>
-            </ul>
+            </ul> -->
 
             <button class="button" type="submit">Submit</button>
         </form>

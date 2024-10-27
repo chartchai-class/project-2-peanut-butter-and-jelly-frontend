@@ -17,6 +17,7 @@ import RegisterView from '@/views/RegisterView.vue'
 import { auth } from '@/firebase';
 import UsersView from "@/views/UsersView.vue"
 import CountryManaged from "@/views/CountryManagedView.vue"
+import SportsManagedView from '@/views/SportsManagedView.vue'
 
 
 const router = createRouter({
@@ -31,6 +32,11 @@ const router = createRouter({
       path: '/countrymanaged',
       name: 'countrymanaged-view',
       component: CountryManaged,
+    },
+    {
+    path: '/sports-managed',
+    name: 'sports-managed-view',
+    component:SportsManagedView,
     },
     {
       path: '/',

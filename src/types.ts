@@ -84,6 +84,19 @@ export interface CountryInfo {
   countryName: string;
   description: string;
   flag: string;
-  sports: string[]; 
+  // sports: string[]; 
+}
+export enum MedalType{
+  GOLD = "gold",
+  SILVER = "silver",
+  BRONZE = "bronze"
+}
+
+export interface SportsInfo{
+  id: number;
+  sportName: string,
+  eventCategory: string,
+  medalType: MedalType.GOLD,
+  medalCount: number;
 }
 

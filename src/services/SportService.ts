@@ -47,5 +47,8 @@ export default {
   },
   getCountry(id: number) {
     return apiClient.get('/countries/' + id)
+  },
+  saveSport(sport: { sportName: string; eventCategory: string; medalType: string; medalCount: number }) {
+    return apiClient.post('/sports', sport) // Ensure the endpoint matches your backend API
   }
 }
