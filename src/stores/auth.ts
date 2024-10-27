@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 import type { AxiosInstance } from 'axios'
+import type { User } from '@/types'
 
 const apiClient: AxiosInstance = axios.create({
     baseURL: import.meta.env.VITE_BACKEND_URL,
@@ -12,7 +13,8 @@ const apiClient: AxiosInstance = axios.create({
 })
 export const useAuthStore = defineStore('auth', {
     state: () => ({
-        token: null as string | null
+        token: null as string | null,
+        user: null as User | null
     }),
     actions: {
         async login(username: string, password: string) {
@@ -23,7 +25,9 @@ export const useAuthStore = defineStore('auth', {
                         password: password,
                     });
                 this.token = response.data.access_token
+                this.user = response.data.user
                 localStorage.setItem('access_token', this.token as string)
+                localStorage.setItem('user', JSON.stringify(this.user))
                 axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
                 return response
             } catch (error) {

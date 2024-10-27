@@ -51,7 +51,13 @@ export interface CountryState {
 export interface Comment {
   id: number
   author: string
-  comment: string
+  message: string
+}
+
+export interface CommentUser {
+  id: number,
+  username: string,
+  role: string
 }
 
 export interface MessageState {
