@@ -35,43 +35,51 @@ onMounted(() => {
       });
   });
 });
+
+
+// Parse the user data from local storage
+const userData = JSON.parse(localStorage.getItem('user'));
+
+// Computed property to check for ROLE_ADMIN
+const isAdmin = computed(() => userData?.roles.includes('ROLE_ADMIN'));
+
+
 </script>
 <template>
   <h1 class="text-2xl font-bold">Medal Tally</h1>
-  <RouterLink :to="{ name: 'countrymanaged-view' }" class="absolute top-10 right-8">
-    <button class= "px-4 py-2 text-white bg-red-950 rounded hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red- flex items-center">
-    <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <RouterLink v-if="isAdmin" :to="{ name: 'countrymanaged-view' }" class="absolute top-10 right-8">
+    <button
+      class="px-4 py-2 text-white bg-red-950 rounded hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red- flex items-center">
+      <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-    </svg>
+      </svg>
       Add Country Details
-      </button>
-    </RouterLink>
+    </button>
+  </RouterLink>
   <p>This is where the main content goes.</p>
-<div class="flex justify-between items-center mb-4">
-  <div class="w-[300px] inline-flex -space-x-px text-sm">
-      <RouterLink
-        :to="{ name: 'medal-tally-view', query: { page: page - 1 } }"
-        rel="prev" class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-red-200 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-        v-if="page != 1"
-        > Previous </RouterLink
-      >
-      <RouterLink v-for="i in totalPage" 
-      :key="i" :to="{ name:  'medal-tally-view', query: { page: i } }" class="flex items-center justify-center px-2 h-8 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 hover:bg-red-200 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-      
-      {{ i }} 
+  <div class="flex justify-between items-center mb-4">
+    <div class="w-[300px] inline-flex -space-x-px text-sm">
+      <RouterLink :to="{ name: 'medal-tally-view', query: { page: page - 1 } }" rel="prev"
+        class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-red-200 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+        v-if="page != 1"> Previous </RouterLink>
+      <RouterLink v-for="i in totalPage" :key="i" :to="{ name: 'medal-tally-view', query: { page: i } }"
+        class="flex items-center justify-center px-2 h-8 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 hover:bg-red-200 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+
+        {{ i }}
       </RouterLink>
 
-      <RouterLink
-        :to="{ name: 'medal-tally-view', query: { page: page + 1 } }"
-        rel="next" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-e-lg hover:bg-red-200 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-        v-if="hasNextPage">Next </RouterLink
-      >
+      <RouterLink :to="{ name: 'medal-tally-view', query: { page: page + 1 } }" rel="next"
+        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-e-lg hover:bg-red-200 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+        v-if="hasNextPage">Next </RouterLink>
     </div>
     <div class="flex items-center">
       <label for="pageSize" class="text-gray-700 mr-2">Number of countries per page: </label>
-      <input id="pageSize" type="number" min="1" max="9" v-model.number="limitStore.limit" class="border border-gray-300 rounded p-2 mt-1 w-14"/>
+      <input id="pageSize" type="number" min="1" max="9" v-model.number="limitStore.limit"
+        class="border border-gray-300 rounded p-2 mt-1 w-14" />
 
-      <p v-if="limit > totalCountries" class="text-red-500 ml-2">The maximum allowed number of countries per page is {{ totalCountries }}</p>
+      <p v-if="limit > totalCountries" class="text-red-500 ml-2">The maximum allowed number of countries per page is {{
+        totalCountries }}</p>
 
 
     </div>

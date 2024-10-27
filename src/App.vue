@@ -1,5 +1,12 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import { computed } from 'vue'
+
+// Parse the user data from local storage
+const userData = JSON.parse(localStorage.getItem('user'));
+
+// Computed property to check for ROLE_ADMIN
+const isAdmin = computed(() => userData?.roles.includes('ROLE_ADMIN'));
 </script>
 
 <template>
@@ -37,11 +44,12 @@ import { RouterLink, RouterView } from 'vue-router'
             About 
           </RouterLink>
         </li>
-        <li class="mb-4">
+        <li class="mb-4" v-if="isAdmin">
           <RouterLink
             :to="{ name: 'user-view' }"
             class="block hover:bg-red-950 hover:text-white hover:rounded-lg hover:px-4 hover:py-2 transition-all"
             active-class="font-extrabold text-2xl rounded-lg px-4 py-2"
+            v-if="isAdmin"
           >
             User
           </RouterLink>
