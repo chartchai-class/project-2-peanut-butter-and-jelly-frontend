@@ -22,7 +22,7 @@ const addComment = () => {
     const newAuthor = author.value.trim() || 'Anonymous'
     const newComment = {
       author: newAuthor,
-      comment: commentText.value
+      message: commentText.value
     }
     commentStore.addComment(sport.value.id.toString(), newComment)
     // Clear input fields after adding the comment

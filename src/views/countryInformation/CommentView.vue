@@ -21,7 +21,7 @@ const addComment = () => {
     const newAuthor = author.value.trim() || 'Anonymous'
     const newComment = {
       author: newAuthor,
-      comment: commentText.value
+      message: commentText.value
     }
     commentStore.addComment(country.value.id.toString(), newComment)
     // Clear input fields after adding the comment
@@ -50,7 +50,7 @@ console.log(countryComments.value)
 <template>
   <div v-if="country">
     <div class="overflow-auto" :class="{ 'pb-60': isFormVisible }">
-      <h1 class="text-5xl font-bold">Cheer up for {{ country.country }}</h1> 
+      <h1 class="text-5xl font-bold">Cheer up for {{ country.countryName }}</h1> 
       
       <!-- Comment section -->
       <div class="py-4">

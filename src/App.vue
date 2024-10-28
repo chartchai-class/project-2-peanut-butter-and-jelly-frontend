@@ -3,7 +3,8 @@ import { RouterLink, RouterView } from 'vue-router'
 import { computed } from 'vue'
 
 // Parse the user data from local storage
-const userData = JSON.parse(localStorage.getItem('user'));
+const userDataString = localStorage.getItem('user');
+const userData = userDataString ? JSON.parse(userDataString) : {};
 
 // Computed property to check for ROLE_ADMIN
 const isAdmin = computed(() => userData?.roles.includes('ROLE_ADMIN'));
