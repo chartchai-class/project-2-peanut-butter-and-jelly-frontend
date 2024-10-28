@@ -21,6 +21,10 @@ jobs:
       - name: Deploy to VM
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.HOST_USERNAME }}@${{ secrets.HOST_SERVER }} "
+            echo 'Current directory:'
+            pwd
+            echo 'Listing contents of /var/www:'
+            ls /var/www
             cd /var/www || mkdir -p /var/www && cd /var/www;
             if [ ! -d project-2-peanut-butter-and-jelly-frontend ]; then
               git clone https://github.com/chartchai-class/project-2-peanut-butter-and-jelly-frontend project-2-peanut-butter-and-jelly-frontend
