@@ -3,7 +3,7 @@ name: Deploy to Azure VM
 on:
   push:
     branches:
-      - main  # เปลี่ยนตามชื่อ branch ที่ต้องการ
+      - main  # Branch to trigger on
 
 jobs:
   deploy:
@@ -20,4 +20,12 @@ jobs:
 
       - name: Deploy to VM
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.HOST_USERNAME }}@${{ secrets.HOST_SERVER }} "cd //var/www/project-2-peanut-butter-and-jelly-frontend && git pull && docker-compose up -d"
+          ssh -o StrictHostKeyChecking=no ${{ secrets.HOST_USERNAME }}@${{ secrets.HOST_SERVER }} "
+            cd /var/www || mkdir -p /var/www && cd /var/www;
+            if [ ! -d project-2-peanut-butter-and-jelly-frontend ]; then
+              git clone https://github.com/chartchai-class/project-2-peanut-butter-and-jelly-frontend project-2-peanut-butter-and-jelly-frontend
+            else
+              cd project-2-peanut-butter-and-jelly-frontend && git pull
+            fi
+            cd project-2-peanut-butter-and-jelly-frontend && docker-compose up -d
+          "
