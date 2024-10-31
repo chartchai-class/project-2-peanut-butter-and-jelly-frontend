@@ -29,7 +29,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: techatham/peanut-butter-and-jelly-frontend:latest
+          tags: pbandj@40.81.30.223:latest
 
       - name: Copy Docker Compose file via SSH
         uses: appleboy/scp-action@v0.1.7
